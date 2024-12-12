@@ -35,6 +35,7 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
       {showHeaderFooter && <Footer />}
+      
     </>
   );
 }
