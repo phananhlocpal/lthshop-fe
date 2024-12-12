@@ -5,7 +5,7 @@ import Footer from './components/layout/Footer';
 // import pages
 import Home from "./pages/Home";
 import Shop from './pages/Shop';
-import ProductPage from './pages/ProductDetail';
+import ProductDetail from './pages/ProductDetail';
 import CartPage from "./pages/Cart"
 import CheckoutPage from './pages/Checkout';
 import Admin from "./pages/AdminPanel"
@@ -25,7 +25,7 @@ function App() {
       {showHeaderFooter && <Header/>}
       <Routes>
         <Route path="/" element={<Home location={location} />} />
-        <Route path="/ProductDetail/:nameAlias" element={<ProductPage />} /> 
+        <Route path="/ProductDetail/:nameAlias" element={<ProductDetail />} /> 
         <Route path="/authentication" element={<Authentication />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
