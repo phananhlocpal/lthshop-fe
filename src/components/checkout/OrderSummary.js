@@ -32,6 +32,25 @@ function OrderSummary({ onPaymentComplete }) {
     fetchExchangeRate();
   }, [defaultTotal]);
 
+  const handleVnpayPayment = async () => {
+    try {
+      const orderData = {
+        totalPrice: defaultTotal,
+        customerID: currentUser.customerID,
+      };
+
+      // Gửi yêu cầu tạo URL thanh toán đến backend
+      const response = await orderApi.createOrderVnpay(orderData);
+      // const vnpayUrl = response.data.paymentUrl;
+
+      // Chuyển hướng người dùng đến URL thanh toán
+      // window.location.href = vnpayUrl;
+      onPaymentComplete();
+    } catch (error) {
+      console.error('Error initiating VNPAY payment:', error);
+    }
+  };
+
   const onApprovePaypal = async (data, actions) => {
     const order = await actions.order.capture();
     console.log('Order details:', order);
@@ -106,6 +125,13 @@ function OrderSummary({ onPaymentComplete }) {
           onApprove={onApprovePaypal}
         />
       </PayPalScriptProvider>
+      <div class="vnpay-button-component flex justify-center items-center animate-fade-in mt-5 w-100">
+        <button onClick={handleVnpayPayment} class="vnpay-button flex items-center justify-center bg-white border border-gray-300 rounded-lg px-6 py-3 shadow-md transition-transform duration-300 hover:bg-gray-100 hover:border-gray-500 hover:shadow-lg hover:scale-105">
+          <div className='flex items-center justify-between'>
+            <img src="https://vivnpay.vn/assets/media/logo/logo-52.svg" alt="VNPAY Logo" class="w-36 h-auto" />
+          </div>
+        </button>
+      </div>
     </div>
   );
 }
