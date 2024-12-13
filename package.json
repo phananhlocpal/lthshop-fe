@@ -47,7 +47,7 @@
     "dev:build-server": "cross-env NODE_ENV=development webpack --config webpack.server.js --mode=development -w",
     "dev:start": "nodemon ./server-build/index.js",
     "dev": "npm-run-all --parallel build dev:*",
-    "postinstall": "apt-get install -y chromium"
+    "postinstall": "puppeteer-install"
   },
   "eslintConfig": {
     "extends": [
