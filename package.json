@@ -47,7 +47,8 @@
     "dev:build-server": "cross-env NODE_ENV=development webpack --config webpack.server.js --mode=development -w",
     "dev:start": "nodemon ./server-build/index.js",
     "dev": "npm-run-all --parallel build dev:*",
-    "postinstall": "puppeteer-install"
+    "build:server": "webpack --config webpack.server.js --mode=production",
+    "vercel-build": "npm run build && npm run build:server"
   },
   "eslintConfig": {
     "extends": [
